@@ -1,7 +1,6 @@
 # Day21 · Prompt·Context Engineering 실습
 
 2026-11-16 · 강사용: 정답이 완성된 코드입니다. 실제 모델 응답·평가는 자동으로 채우지 않습니다.
-기준: **Day21_Lecture_20261116.pptx, 총 86장**. PPT를 변경하지 않았습니다.
 
 ## 시작
 `START_HERE.html` 또는 이 README를 여세요. **한 수준만 선택**합니다.
