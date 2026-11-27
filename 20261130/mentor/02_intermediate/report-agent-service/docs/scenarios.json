@@ -1,0 +1,56 @@
+{
+  "report_id_example": 63,
+  "missing_id_example": 999999,
+  "scenarios": [
+    {
+      "id": "T01",
+      "endpoint": "/api/v1/rag/ask",
+      "question": "보고서 {{report_id}}번의 핵심 내용을 알려줘.",
+      "expected_http": 200,
+      "expected_status": "completed"
+    },
+    {
+      "id": "T02",
+      "endpoint": "/api/v1/rag/ask",
+      "question": "보고서 {{missing_id}}번의 핵심 내용을 알려줘.",
+      "expected_http": 200,
+      "expected_status": "insufficient_evidence"
+    },
+    {
+      "id": "T03",
+      "endpoint": "/api/v1/rag/ask",
+      "question": "ab",
+      "expected_http": 422
+    },
+    {
+      "id": "T04",
+      "fixture": "tests/test_06_pipeline.py",
+      "expected_error": "OUTPUT_CONTRACT_ERROR"
+    },
+    {
+      "id": "T05",
+      "endpoint": "/api/v1/agent/ask",
+      "question": "보고서 {{report_id}}번의 핵심 내용을 알려줘.",
+      "required_tools": [
+        "rag_search"
+      ]
+    },
+    {
+      "id": "T06",
+      "endpoint": "/api/v1/agent/ask",
+      "question": "보고서 {{report_id}}번의 현재 인덱싱 상태를 알려줘.",
+      "required_tools": [
+        "lookup_status"
+      ]
+    },
+    {
+      "id": "T07",
+      "endpoint": "/api/v1/agent/ask",
+      "question": "보고서 {{report_id}}번의 핵심 내용과 현재 인덱싱 상태를 알려줘.",
+      "required_tools": [
+        "rag_search",
+        "lookup_status"
+      ]
+    }
+  ]
+}
