@@ -1,0 +1,42 @@
+from app.core.settings import load_settings
+from app.db.connection import Database
+from app.db.repository import Repository
+from app.rag.embeddings import E5
+from app.rag.retriever import Retriever
+from app.rag.reranker import Reranker
+from app.rag.pipeline import RagPipeline
+from app.core.models import make_model
+from app.services.rag_service import RagService
+from app.core.preflight import preflight
+from app.agent import AgentService
+
+class Runtime:
+    def __init__(self, settings=None, repo=None, embedder=None,
+                 reranker=None, model_factory=None):
+        self.settings = settings or load_settings()
+        self.db = None if repo is not None else Database(self.settings)
+        self.repo = repo if repo is not None else Repository(self.db)
+        self.embedder = embedder if embedder is not None else E5(self.settings)
+        self.reranker = reranker if reranker is not None else Reranker(self.settings)
+        self.model_factory = model_factory or (lambda: make_model(self.settings))
+        # 기존 RAG 기능을 조립하고 신규 Service에 전달한다.
+        self.pipeline = RagPipeline(
+            self.settings, Retriever(self.repo, self.embedder),
+            self.reranker, self.model_factory,
+        )
+        # BEGIN D31-B03-01
+        # TODO D31-B03-01: Settings와 준비한 Pipeline으로 RagService를 생성하세요.
+        raise ServiceError('NOT_IMPLEMENTED', 'UNIMPLEMENTED_D31-B03-01')
+        # END D31-B03-01
+        # Agent는 동일한 RagService와 Repository를 공유한다. 요청 처리 때 Agent를 구성한다.
+        self.agent = AgentService(self.settings, self.repo, self.rag_service, self.model_factory)
+
+    def health(self):
+        # BEGIN D31-B03-02
+        # TODO D31-B03-02: 기존 preflight 함수로 Settings와 Repository의 준비 상태를 반환하세요.
+        raise ServiceError('NOT_IMPLEMENTED', 'UNIMPLEMENTED_D31-B03-02')
+        # END D31-B03-02
+
+    def close(self):
+        if self.db:
+            self.db.close()

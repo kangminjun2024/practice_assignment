@@ -1,0 +1,163 @@
+[
+  {
+    "id": "D31-I02-01",
+    "lab": 2,
+    "part": "-",
+    "file": "app/schemas/rag.py",
+    "hint": "question에 위에서 선언한 검증 타입을 지정하세요."
+  },
+  {
+    "id": "D31-I02-02",
+    "lab": 2,
+    "part": "-",
+    "file": "app/main.py",
+    "hint": "FastAPI app에 RAG Router를 등록하세요."
+  },
+  {
+    "id": "D31-I02-03",
+    "lab": 2,
+    "part": "-",
+    "file": "app/api/rag.py",
+    "hint": "RAG 응답 모델을 route의 response_model에 연결하세요."
+  },
+  {
+    "id": "D31-I03-01",
+    "lab": 3,
+    "part": "-",
+    "file": "app/core/runtime.py",
+    "hint": "Settings와 준비한 Pipeline으로 RagService를 생성하세요."
+  },
+  {
+    "id": "D31-I03-02",
+    "lab": 3,
+    "part": "-",
+    "file": "app/core/runtime.py",
+    "hint": "기존 preflight 함수로 Settings와 Repository의 준비 상태를 반환하세요."
+  },
+  {
+    "id": "D31-I03-03",
+    "lab": 3,
+    "part": "-",
+    "file": "app/core/runtime.py",
+    "hint": "주입된 repo가 있으면 재사용하고, 없으면 Database로 Repository를 구성하세요."
+  },
+  {
+    "id": "D31-I04-01",
+    "lab": 4,
+    "part": "-",
+    "file": "app/rag/retriever.py",
+    "hint": "현재 질문과 Meter를 사용해 E5 인코딩을 호출하세요."
+  },
+  {
+    "id": "D31-I04-02",
+    "lab": 4,
+    "part": "-",
+    "file": "app/rag/retriever.py",
+    "hint": "Repository 후보 조회 결과를 rows에 추가하세요."
+  },
+  {
+    "id": "D31-I04-03",
+    "lab": 4,
+    "part": "-",
+    "file": "app/rag/retriever.py",
+    "hint": "거리 오름차순·ID 동점 기준으로 최대 top_k개를 정렬하고 Document로 반환하세요."
+  },
+  {
+    "id": "D31-I05-01",
+    "lab": 5,
+    "part": "-",
+    "file": "app/rag/pipeline.py",
+    "hint": "현재 질문과 후보 목록으로 Reranker를 호출하세요."
+  },
+  {
+    "id": "D31-I05-02",
+    "lab": 5,
+    "part": "-",
+    "file": "app/rag/pipeline.py",
+    "hint": "길이 검사를 통과한 item과 해당 Document의 Source를 각각 추가하세요."
+  },
+  {
+    "id": "D31-I05-03",
+    "lab": 5,
+    "part": "-",
+    "file": "app/rag/pipeline.py",
+    "hint": "Source Metadata와 본문을 합치고 본문을 문서당 3000자 및 remaining 이내로 제한하세요."
+  },
+  {
+    "id": "D31-I06-01",
+    "lab": 6,
+    "part": "-",
+    "file": "app/rag/pipeline.py",
+    "hint": "RunnableLambda에서 필요한 Prompt 필드 3개를 선택하고 RAG_PROMPT, model을 LCEL로 연결하세요."
+  },
+  {
+    "id": "D31-I06-02",
+    "lab": 6,
+    "part": "-",
+    "file": "app/rag/pipeline.py",
+    "hint": "준비된 dict를 Chain에 입력해 실제 실행하세요."
+  },
+  {
+    "id": "D31-I06-03",
+    "lab": 6,
+    "part": "-",
+    "file": "app/rag/pipeline.py",
+    "hint": "AIMessage의 content를 기존 Parser로 검증하세요."
+  },
+  {
+    "id": "D31-I07-01",
+    "lab": 7,
+    "part": "A",
+    "file": "app/services/rag_service.py",
+    "hint": "공통 업무 함수에서 Pipeline을 호출하고 반환값을 raw에 저장하세요."
+  },
+  {
+    "id": "D31-I07-02",
+    "lab": 7,
+    "part": "A",
+    "file": "app/services/rag_service.py",
+    "hint": "현재 요청 질문·Category와 설정된 context_k, 요청 전용 Meter로 run을 실행하세요."
+  },
+  {
+    "id": "D31-I07-03",
+    "lab": 7,
+    "part": "B",
+    "file": "app/tools/rag_tool.py",
+    "hint": "공통 RagService의 run을 호출하고 Pydantic 결과를 dict로 변환하세요."
+  },
+  {
+    "id": "D31-I07-04",
+    "lab": 7,
+    "part": "B",
+    "file": "app/api/agent.py",
+    "hint": "현재 Runtime의 Agent에 요청 ID, 요청 Body, Meter를 전달하세요."
+  },
+  {
+    "id": "D31-I07-05",
+    "lab": 7,
+    "part": "A",
+    "file": "app/services/rag_service.py",
+    "hint": "내부 found/not_found를 외부 completed/insufficient_evidence로 매핑하세요."
+  },
+  {
+    "id": "D31-I08-01",
+    "lab": 8,
+    "part": "-",
+    "file": "tools/acceptance.py",
+    "hint": "응답 완료 상태와 실제 요청 보고서 ID 집합을 검사하세요."
+  },
+  {
+    "id": "D31-I08-02",
+    "lab": 8,
+    "part": "-",
+    "file": "tools/acceptance.py",
+    "hint": "Agent 완료 상태, 필요한 found Tool 포함 여부, 실행 검증 Flag를 확인하세요."
+  },
+  {
+    "id": "D31-I08-03",
+    "lab": 8,
+    "part": "-",
+    "file": "tools/acceptance.py",
+    "hint": "근거 부족 상태와 빈 출처를 검사하세요."
+  }
+]

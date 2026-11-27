@@ -1,0 +1,12 @@
+# 핵심 용어
+- Runtime: Application에서 의존 객체의 생성과 재사용을 담당하는 프로젝트 클래스.
+- DI(Dependency Injection): 생성자에 의존 객체를 전달하여 실제 객체와 테스트 객체를 바꿔 끼우는 방법.
+- Request Scope: 하나의 요청에서 사용하는 ID, Meter, Context 등.
+- Repository: DB 접근과 고정 SQL을 한 곳에 관리하는 모듈.
+- Retriever: 질문 Vector와 DB 검색 조건으로 후보 Document를 얻는 모듈.
+- Reranker: 기존 후보를 질문과 문서 쌍의 관련성으로 다시 정렬.
+- Context: 모델에 실제 전달하는 본문과 Source 정보. Token 예산과 글자 예산은 다르다.
+- LCEL: Runnable을 `|`로 조합하고 invoke() 등으로 실행하는 표현 방식.
+- Agent: 모델의 Tool 호출 요청과 서버의 실행, 결과 재입력을 반복하는 구조.
+- Ledger: 현재 요청에서 실제로 실행된 Tool의 내부 기록. Tool Trace는 메시지와 대조한 외부 공개용 결과.
+- Citation Validation: 인용 ID가 실제 근거와 일치하는지 확인. 사실성 자체를 증명하지 않는다.
